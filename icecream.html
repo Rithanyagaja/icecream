@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Inventory</title>
+</head>
+<body>
+
+    <h1>Ice Cream Inventory</h1>
+    <button onclick="addIceCream('Chocolate', 2.5, 10)">Add Chocolate</button>
+    <button onclick="addIceCream('Vanilla', 2.0, 15)">Add Vanilla</button>
+    <button onclick="updateIceCream('Chocolate', 3.0, 8)">Update Chocolate</button>
+    <button onclick="calculateTotal()">Calculate Total Value</button>
+
+    <p id="totalValue"></p>
+
+    <script>
+        // Ice cream inventory (initially empty)
+        let inventory = [];
+
+        // Function to add a new ice cream
+        function addIceCream(flavor, price, quantity) {
+            inventory.push({ flavor, price, quantity });
+            console.log(inventory);
+        }
+
+        // Function to update an existing ice cream flavor
+        function updateIceCream(flavor, newPrice, newQuantity) {
+            for (let iceCream of inventory) {
+                if (iceCream.flavor === flavor) {
+                    iceCream.price = newPrice;
+                    iceCream.quantity = newQuantity;
+                    break;
+                }
+            }
+            console.log(inventory);
+        }
+
+        // Function to calculate the total value of all ice creams in inventory
+        function calculateTotal() {
+            let totalValue = 0;
+            for (let iceCream of inventory) {
+                totalValue += iceCream.price * iceCream.quantity;
+            }
+            document.getElementById('totalValue').innerText = `Total Inventory Value: $${totalValue.toFixed(2)}`;
+        }
+    </script>
+
+</body>
+</html>
